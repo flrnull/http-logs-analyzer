@@ -12,4 +12,5 @@ Algorithm:
 Classes:
 --------
 - Config (main config singleton)
-- Debug (print debug info)
+- Debug namespace (print debug info)
+- Result namespace (collect result info)

@@ -11,6 +11,7 @@ class Config {
         Config& operator=(Config&);
         
     public:
+        ~Config();
         static Config * getInstance();
         void parseArgs(int argc, char **argv);
         void debug();

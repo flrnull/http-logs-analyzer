@@ -5,16 +5,17 @@
 
 Config* Config::_instance = 0;
 
+Config::Config()
+: logName("log.txt")
+, debugMode(0)
+{}
+
 Config * Config::getInstance() {
     if (!_instance) {
         _instance = new Config();
     }
     return _instance;
 }
-
-Config::Config()
-: logName("log.txt"), debugMode(0)
-{}
 
 void Config::parseArgs(int argc, char **argv) {
     int c;
@@ -45,5 +46,11 @@ void Config::debug() {
         Debug::print("Options:");
         Debug::print(debugString);
         Debug::print("----> logName: " + this->logName);
+    }
+}
+
+Config::~Config() {
+    if (this->debugMode == 1) {
+        Debug::print("(Config destructor)");
     }
 }
