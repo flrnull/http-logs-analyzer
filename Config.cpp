@@ -6,9 +6,13 @@
 Config* Config::_instance = 0;
 
 Config::Config()
-: logName("log.txt")
-, debugMode(0)
-{}
+    : logName("access_log")
+    , debugMode(0)
+{
+    if (this->debugMode == 1) {
+        Debug::print("(Config constructor)");
+    }
+}
 
 Config * Config::getInstance() {
     if (!_instance) {

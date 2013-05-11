@@ -14,3 +14,4 @@ Classes:
 - Config (main config singleton)
 - Debug namespace (print debug info)
 - Result namespace (collect result info)
+- Parser (parse log line into struct)

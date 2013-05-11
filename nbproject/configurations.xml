@@ -4,15 +4,22 @@
     <logicalFolder name="SourceFiles"
                    displayName="Исходные файлы"
                    projectFiles="true">
+      <itemPath>Config.cpp</itemPath>
+      <itemPath>Debug.cpp</itemPath>
+      <itemPath>Result.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Файлы заголовков"
                    projectFiles="true">
+      <itemPath>Config.h</itemPath>
+      <itemPath>Debug.h</itemPath>
+      <itemPath>Result.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Файлы ресурсов"
                    projectFiles="true">
+      <itemPath>access_log</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Файлы тестов"
@@ -26,14 +33,8 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
-    <itemPath>Config.cpp</itemPath>
-    <itemPath>Config.h</itemPath>
-    <itemPath>Debug.cpp</itemPath>
-    <itemPath>Debug.h</itemPath>
     <itemPath>LICENSE</itemPath>
     <itemPath>README.md</itemPath>
-    <itemPath>Result.cpp</itemPath>
-    <itemPath>Result.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -63,6 +64,8 @@
       <item path="Result.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -105,6 +108,8 @@
       <item path="Result.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

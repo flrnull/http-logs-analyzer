@@ -24,6 +24,9 @@ int main(int argc, char **argv)
     while(std::getline(logFile, logLine)) {
         Result::views++;
     }
+    if (config->debugMode) {
+        Debug::print("End reading file...");
+    }
     // Result
     Result::display();
     return 0;
