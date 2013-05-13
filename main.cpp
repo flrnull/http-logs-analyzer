@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Debug.h"
 #include "Result.h"
+#include "Parser.h"
 #include <iostream>
 #include <fstream>
 
@@ -21,6 +22,7 @@ int main(int argc, char **argv)
         Debug::print("Start reading file...");
     }
     std::string logLine;
+    Parser parser(config);
     while(std::getline(logFile, logLine)) {
         Result::views++;
     }

@@ -7,7 +7,7 @@ Config* Config::_instance = 0;
 
 Config::Config()
     : logName("access_log")
-    , debugMode(0)
+    , debugMode(1)
 {
     if (this->debugMode == 1) {
         Debug::print("(Config constructor)");

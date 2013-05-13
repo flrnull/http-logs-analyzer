@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=HttpLogsAnalyzer
+PROJECTNAME=http-logs-analyzer
 
 # Active Configuration
 DEFAULTCONF=Debug

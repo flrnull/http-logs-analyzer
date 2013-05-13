@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Config.o \
 	${OBJECTDIR}/Debug.o \
+	${OBJECTDIR}/Parser.o \
 	${OBJECTDIR}/Result.o \
 	${OBJECTDIR}/main.o
 
@@ -59,11 +60,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/httplogsanalyzer.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/http-logs-analyzer.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/httplogsanalyzer.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/http-logs-analyzer.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/httplogsanalyzer ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/http-logs-analyzer ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Config.o: Config.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -74,6 +75,11 @@ ${OBJECTDIR}/Debug.o: Debug.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Debug.o Debug.cpp
+
+${OBJECTDIR}/Parser.o: Parser.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Parser.o Parser.cpp
 
 ${OBJECTDIR}/Result.o: Result.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -91,7 +97,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/httplogsanalyzer.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/http-logs-analyzer.exe
 
 # Subprojects
 .clean-subprojects:

@@ -1,17 +1,20 @@
-Temporary docs
-==============
+Http Logs Analyzer (under construction)
+=====
 
-Algorithm:
-----------
-- Init config options
-- Read and validate input params (log name and some options)
-- Init result structure with all necessary fields and zero values
-- Start reading log file per line and fill result structure
-- Output result
+Usage
+-----
 
-Classes:
---------
-- Config (main config singleton)
-- Debug namespace (print debug info)
-- Result namespace (collect result info)
-- Parser (parse log line into struct)
+```shell
+./http-logs-analyzer -f access_log
+```
+
+Output
+------
+
+```shell
+{
+  views: 2,
+  visitors: 0,
+  parseFails: 0,
+}
+```
