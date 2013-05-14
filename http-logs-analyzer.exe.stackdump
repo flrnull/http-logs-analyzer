@@ -1,9 +1,0 @@
-Exception: STATUS_ACCESS_VIOLATION at eip=00402EE6
-eax=00000000 ebx=0028AC90 ecx=00000000 edx=00000000 esi=00000000 edi=0028CD78
-ebp=0028AC68 esp=0028AA40 program=C:\flr\projects\github\http-logs-analyzer\dist\Debug\Cygwin-Windows\http-logs-analyzer.exe, pid 4004, thread main
-cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
-Stack trace:
-Frame     Function  Args
-0028AC68  00402EE6  (00000001, 0028AC90, 20010100, 00000000)
-0028ACF8  610078D1  (00000000, 0028CD78, 61006DC0, 00000000)
-End of stack trace
