@@ -3,16 +3,21 @@
 #include "Config.h"
 #include <iostream>
 
-Parser::Parser(std::auto_ptr<Config> config)
+Parser::Parser(Config *config)
 : config(config)
 {
-    if (this->config->debugMode == 1) {
+    if (config->debugMode == 1) {
         Debug::print("(Parser constructor)");
     }
 }
 
 Parser::~Parser() {
-    if (this->config->debugMode == 1) {
+    if (config->debugMode == 1) {
         Debug::print("(Parser constructor)");
     }
+}
+
+bool Parser::parse(std::string logLine) {
+    
+    return true;
 }

@@ -22,9 +22,12 @@ int main(int argc, char **argv)
         Debug::print("Start reading file...");
     }
     std::string logLine;
-    Parser parser(config);
+    Parser parser(config.get());
     while(std::getline(logFile, logLine)) {
-        Result::views++;
+        if (!parser.parse(logLine)) {
+            Result::fails++;
+        }
+        Result::lines++;
     }
     if (config->debugMode) {
         Debug::print("End reading file...");

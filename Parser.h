@@ -6,10 +6,11 @@
 class Parser 
 {
 public:
-    Parser(std::auto_ptr<Config> config);
+    Parser(Config *config);
     ~Parser();
+    bool parse(std::string logLine);
 private:
-    std::auto_ptr<Config> config;
+    Config *config;
 };
 
 
