@@ -10,7 +10,13 @@ Config::Config()
     , debugMode(1)
 {
     if (this->debugMode == 1) {
-        Debug::print("(Config constructor)");
+        Debug::print("<Config constructor>");
+    }
+}
+
+Config::~Config() {
+    if (this->debugMode == 1) {
+        Debug::print("</Config destructor>");
     }
 }
 
@@ -53,8 +59,3 @@ void Config::debug() {
     }
 }
 
-Config::~Config() {
-    if (this->debugMode == 1) {
-        Debug::print("(Config destructor)");
-    }
-}

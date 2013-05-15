@@ -5,6 +5,7 @@
 #include "Parser.h"
 #include <iostream>
 #include <fstream>
+#include "regex_functions.h"
 
 int main(int argc, char **argv)
 {
@@ -23,8 +24,16 @@ int main(int argc, char **argv)
     }
     std::string logLine;
     Parser parser(config.get());
+    // Create regex
+    LogRegexTexts logRegExpsTexts;
+    regex_t regex;
+    logRegexTextsFill(&logRegExpsTexts);
+    LogRegexCompiled logRegExpsCompiled = compileLogRegex(&logRegExpsTexts, regex, config.get());
+    
+    
+    // Parse file
     while(std::getline(logFile, logLine)) {
-        if (!parser.parse(logLine)) {
+        if (!parser.parse(logLine, logRegExpsCompiled)) {
             Result::fails++;
         }
         Result::lines++;
@@ -34,5 +43,7 @@ int main(int argc, char **argv)
     }
     // Result
     Result::display();
+    // Free
+    regfree(&regex);
     return 0;
 }
