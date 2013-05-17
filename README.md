@@ -15,6 +15,9 @@ Output
 {
   views: 2,
   visitors: 0,
-  parseFails: 0,
+  unique_urls: 2,
+  traffic: 0,
+  lines: 2,
+  fails: 0,
 }
 ```
