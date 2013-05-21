@@ -3,24 +3,22 @@
 
 #include <regex.h>
 #include "Config.h"
+#include "Debug.h"
 
+// Text versions of regexps
 typedef struct {
     std::string ip;
 } LogRegexTexts;
 
+// Compiled regexps
 typedef struct {
-    std::string ip;
+    regex_t ip;
 } LogRegexCompiled;
 
 static void logRegexTextsFill(LogRegexTexts *lrt) {
     (*lrt).ip = "\\[[0-9]{,3}\\.[[0-9]{,3}\\.[[0-9]{,3}\\]";
 }
 
-static LogRegexCompiled compileLogRegex(LogRegexTexts * regexps, regex_t regex, Config * config) {
-    LogRegexCompiled lrComp = {};
-    lrComp.ip = compileRegex(&regex, regexps.ip.c_str(), config);
-    return lrComp;
-}
 
 static int compileRegex(regex_t * regex, const char * regexText, Config * config) {
     int error = regcomp (regex, regexText, REG_EXTENDED|REG_NEWLINE);
@@ -31,6 +29,10 @@ static int compileRegex(regex_t * regex, const char * regexText, Config * config
         return 1;
     }
     return 0;
+}
+
+static LogRegexCompiled compileLogRegex(const LogRegexTexts * regexps, LogRegexCompiled *lrComp, Config * config) {
+    compileRegex(&(*lrComp).ip, (*regexps).ip.c_str(), config);
 }
 
 static std::string matchRegex(regex_t * r, const char * to_match, Config * config) {

@@ -26,14 +26,14 @@ int main(int argc, char **argv)
     Parser parser(config.get());
     // Create regex
     LogRegexTexts logRegExpsTexts;
+    LogRegexCompiled logRegExpsCompiled;
     regex_t regex;
+    logRegExpsCompiled.ip = regex;
     logRegexTextsFill(&logRegExpsTexts);
-    LogRegexCompiled logRegExpsCompiled = compileLogRegex(&logRegExpsTexts, regex, config.get());
-    
-    
+    compileLogRegex(&logRegExpsTexts, &logRegExpsCompiled, config.get());    
     // Parse file
     while(std::getline(logFile, logLine)) {
-        if (!parser.parse(logLine, logRegExpsCompiled)) {
+        if (!parser.parse(logLine, &logRegExpsCompiled)) {
             Result::fails++;
         }
         Result::lines++;

@@ -18,11 +18,11 @@ Parser::~Parser() {
     }
 }
 
-bool Parser::parse(std::string logLine, LogRegexCompiled logRegExpsCompiled) {
+bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     const char * findText = logLine.c_str();
     if (config->debugMode == 1) {
         Debug::print("Parser::parse: logLine = " + logLine);
     }
-    matchRegex(logRegExpsCompiled.ip.c_str(), findText, config);
+    matchRegex(&(*logRegExpsCompiled).ip, findText, config);
     return true;
 }
