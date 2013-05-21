@@ -27,23 +27,17 @@ int main(int argc, char **argv)
     // Create regex
     LogRegexTexts logRegExpsTexts;
     LogRegexCompiled logRegExpsCompiled;
-    regex_t regex;
-    logRegExpsCompiled.ip = regex;
     logRegexTextsFill(&logRegExpsTexts);
+    logRegexForCompileFill(&logRegExpsCompiled);
     compileLogRegex(&logRegExpsTexts, &logRegExpsCompiled, config.get());    
     // Parse file
     while(std::getline(logFile, logLine)) {
-        if (!parser.parse(logLine, &logRegExpsCompiled)) {
-            Result::fails++;
-        }
-        Result::lines++;
+        parser.parse(logLine, &logRegExpsCompiled);
     }
     if (config->debugMode) {
         Debug::print("End reading file...");
     }
     // Result
-    Result::display();
-    // Free
-    regfree(&regex);
+    Result::display();   
     return 0;
 }

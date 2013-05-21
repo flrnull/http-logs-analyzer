@@ -3,6 +3,7 @@
 #include "Config.h"
 #include <iostream>
 #include "regex_functions.h"
+#include "Result.h"
 
 Parser::Parser(Config *config)
 : config(config)
@@ -23,6 +24,18 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     if (config->debugMode == 1) {
         Debug::print("Parser::parse: logLine = " + logLine);
     }
-    matchRegex(&(*logRegExpsCompiled).ip, findText, config);
+    // For each line
+    Result::lines++;
+    // Parse IP
+    std::string ipRes = matchRegex(&(*logRegExpsCompiled).ip, findText, config);
+    if (ipRes.length() < 4) {
+        Result::fails++;
+        return false;
+    } else {
+        
+    }
+    
+    // For each success line
+    Result::views++;
     return true;
 }

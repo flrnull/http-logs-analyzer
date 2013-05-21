@@ -5,21 +5,37 @@
 #include "Config.h"
 #include "Debug.h"
 
-// Text versions of regexps
+/* Text versions of regexps */
 typedef struct {
     std::string ip;
 } LogRegexTexts;
 
-// Compiled regexps
+/* Compiled regexps */
 typedef struct {
     regex_t ip;
 } LogRegexCompiled;
 
+/*
+ * Text regexps representations 
+ * for different log line parts.
+ */
 static void logRegexTextsFill(LogRegexTexts *lrt) {
-    (*lrt).ip = "\\[[0-9]{,3}\\.[[0-9]{,3}\\.[[0-9]{,3}\\]";
+    (*lrt).ip = "^[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+";
 }
 
+/*
+ * Compiled representations
+ * of text regexps.
+ */
+static void logRegexForCompileFill(LogRegexCompiled *lrc) {
+    regex_t regex;
+    (*lrc).ip = regex;
+    regfree(&regex);
+}
 
+/*
+ * Compiles text regexp to regex_t.  
+ */
 static int compileRegex(regex_t * regex, const char * regexText, Config * config) {
     int error = regcomp (regex, regexText, REG_EXTENDED|REG_NEWLINE);
     if (error != 0) {
@@ -31,10 +47,16 @@ static int compileRegex(regex_t * regex, const char * regexText, Config * config
     return 0;
 }
 
+/*
+ * Compiles all texts regexps into regex_t. 
+ */
 static LogRegexCompiled compileLogRegex(const LogRegexTexts * regexps, LogRegexCompiled *lrComp, Config * config) {
     compileRegex(&(*lrComp).ip, (*regexps).ip.c_str(), config);
 }
 
+/*
+ * Compares text with regexp. 
+ */
 static std::string matchRegex(regex_t * r, const char * to_match, Config * config) {
     const char * p = to_match;
     regmatch_t m[1]; // matches found
