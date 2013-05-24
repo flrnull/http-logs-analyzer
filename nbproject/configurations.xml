@@ -16,12 +16,13 @@
       <itemPath>Config.h</itemPath>
       <itemPath>Debug.h</itemPath>
       <itemPath>Parser.h</itemPath>
+      <itemPath>Patterns.h</itemPath>
       <itemPath>Result.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Файлы ресурсов"
                    projectFiles="true">
-      <itemPath>example/access_log</itemPath>
+      <itemPath>access_log</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Файлы тестов"
@@ -65,13 +66,15 @@
       </item>
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Patterns.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Result.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="example/access_log" ex="false" tool="3" flavor2="0">
+      <item path="access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -113,13 +116,15 @@
       </item>
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Patterns.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Result.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="example/access_log" ex="false" tool="3" flavor2="0">
+      <item path="access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

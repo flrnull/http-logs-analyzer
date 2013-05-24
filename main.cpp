@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     LogRegexCompiled logRegExpsCompiled;
     logRegexTextsFill(&logRegExpsTexts);
     logRegexForCompileFill(&logRegExpsCompiled);
-    compileLogRegex(&logRegExpsTexts, &logRegExpsCompiled, config.get());    
+    logRegexCompileAll(&logRegExpsTexts, &logRegExpsCompiled, config.get());    
     // Parse file
     while(std::getline(logFile, logLine)) {
         parser.parse(logLine, &logRegExpsCompiled);
@@ -37,6 +37,9 @@ int main(int argc, char **argv)
     if (config->debugMode) {
         Debug::print("End reading file...");
     }
+    // Calc unique users and urls count
+    Result::visitors = Result::ipAgentMap.size();
+    Result::urls = Result::urlMap.size();
     // Result
     Result::display();   
     return 0;

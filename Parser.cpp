@@ -4,6 +4,7 @@
 #include <iostream>
 #include "regex_functions.h"
 #include "Result.h"
+#include <sstream>
 
 Parser::Parser(Config *config)
 : config(config)
@@ -20,19 +21,81 @@ Parser::~Parser() {
 }
 
 bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
-    const char * findText = logLine.c_str();
+    const char * logLineChars = logLine.c_str();
     if (config->debugMode == 1) {
         Debug::print("Parser::parse: logLine = " + logLine);
     }
+    
     // For each line
     Result::lines++;
+    
+    // Parse Agent
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found agent");
+    }
+    std::string agentRes = matchRegex(&(*logRegExpsCompiled).agent, logLineChars, config);
+    if (agentRes.length() < 5) {
+        Result::fails++;
+        return false;
+    }
+    
     // Parse IP
-    std::string ipRes = matchRegex(&(*logRegExpsCompiled).ip, findText, config);
-    if (ipRes.length() < 4) {
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found ip");
+    }
+    std::string ipRes = matchRegex(&(*logRegExpsCompiled).ip, logLineChars, config);
+    if (ipRes.length() < 5) {
         Result::fails++;
         return false;
     } else {
-        
+        // Save to IPs map for calc uniq visitors
+        std::ostringstream ss;
+        ss << agentRes.length();
+        std::string agentResCount = ss.str();
+        std::string mapKey = ipRes + agentResCount;
+        std::map<std::string,int>::iterator it;
+        it = Result::ipAgentMap.find(mapKey);
+        if (it == Result::ipAgentMap.end()) {
+            Result::ipAgentMap[mapKey] = 1;
+        } else {
+            it->second++;
+        }
+    }
+    
+    // Parse url
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found url");
+    }
+    std::string urlRes = matchRegex(&(*logRegExpsCompiled).url, logLineChars, config);
+    if (urlRes.length() < 1) {
+        Result::fails++;
+        return false;
+    } else {
+        // Save to URLs map for calc uniq URLs
+        std::ostringstream sss;
+        sss << urlRes.length();
+        std::string urlResCount = sss.str();
+        std::string urlMapKey = ipRes + urlResCount;
+        std::map<std::string,int>::iterator it;
+        it = Result::urlMap.find(urlMapKey);
+        if (it == Result::urlMap.end()) {
+            Result::urlMap[urlMapKey] = 1;
+        } else {
+            it->second++;
+        }
+    }
+    
+    // Parse traffic
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found traffic");
+    }
+    std::string trafficRes = matchRegex(&(*logRegExpsCompiled).traffic, logLineChars, config);
+    if (trafficRes.length()) {
+        std::istringstream trafficIStream(trafficRes);
+        int traffic;
+        trafficIStream >> traffic;
+        Result::traffic += traffic;
+        printf("\n -> %d \n", traffic);
     }
     
     // For each success line

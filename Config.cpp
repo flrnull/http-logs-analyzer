@@ -5,6 +5,7 @@
 
 Config* Config::_instance = 0;
 
+// Current default config
 Config::Config()
     : logName("./example/access_log")
     , debugMode(1)

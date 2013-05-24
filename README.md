@@ -5,7 +5,7 @@ Usage
 -----
 
 ```shell
-./http-logs-analyzer -f access_log
+./http-logs-analyzer -f ./example/access_log
 ```
 
 Output
@@ -13,11 +13,11 @@ Output
 
 ```shell
 {
-  views: 2,
-  visitors: 0,
-  unique_urls: 2,
+  views: 8,
+  visitors: 3,
+  urls: 5,
   traffic: 0,
-  lines: 2,
-  fails: 0,
+  lines: 12,
+  fails: 4,
 }
 ```
