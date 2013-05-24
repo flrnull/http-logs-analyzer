@@ -21,7 +21,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Файлы ресурсов"
                    projectFiles="true">
-      <itemPath>access_log</itemPath>
+      <itemPath>example/access_log</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Файлы тестов"
@@ -44,6 +44,8 @@
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
       </compileType>
@@ -69,7 +71,7 @@
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="access_log" ex="false" tool="3" flavor2="0">
+      <item path="example/access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -78,6 +80,8 @@
       <toolsSet>
         <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <cTool>
@@ -115,7 +119,7 @@
       </item>
       <item path="Result.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="access_log" ex="false" tool="3" flavor2="0">
+      <item path="example/access_log" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
