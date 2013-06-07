@@ -47,7 +47,6 @@ void Result::display() {
     std::cout << "}" << std::endl;
 }
 
-// @TODO finish this!
 void Result::calcTopUrls(Config * config) {
     if (config->debugMode) {
         Debug::print("Result::calcTopUrls: calc started");
@@ -56,7 +55,7 @@ void Result::calcTopUrls(Config * config) {
     std::map<std::string,int>::iterator itRes = Result::topUrlMap.begin();
     int urlMapSize = Result::urlMap.size();
     int topCount = 0;
-    bool isAdded;
+    bool isAdded, isDeleted;
     std::string tempUrl;
     int tempCount;
     for(int i = 0; i < urlMapSize; i++) {
@@ -72,6 +71,7 @@ void Result::calcTopUrls(Config * config) {
             // If we already have any urls in top
             if (topCount) {
                 isAdded = false;
+                isDeleted = false;
                 // Go through current top from the largest to the smallest
                 // First element in top should be the largest
                 for(int j = 0; j < topCount && !isAdded; j++) {
@@ -85,9 +85,25 @@ void Result::calcTopUrls(Config * config) {
                         topCount++;
                         isAdded = true;
                     }
-                    // If topUrl exceed limit we should remove the smallest
-                    if (isAdded && topCount > config->topUrlsCount) {
-                        
+                }
+                // If topUrl exceed limit we should remove the smallest
+                tempUrl = "";
+                tempCount = 0;
+                if (isAdded && topCount > config->topUrlsCount) {
+                    for(int z = 0; z < topCount && !isDeleted; z++) {
+                        std::advance(itRes, z);
+                        if (itRes->second < tempCount && tempCount) {
+                            // we save smallest values to temp params
+                            tempUrl = itRes->first;
+                            tempCount = itRes->second;
+                        }
+                    }
+                    // delete saved temp param
+                    if (tempCount) {
+                        if (config->debugMode) {
+                            Debug::print("Result::calcTopUrls: remove the smallest url " + tempUrl);
+                        }
+                        Result::topUrlMap.erase(tempUrl);
                     }
                 }
             }
