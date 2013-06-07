@@ -7,6 +7,6 @@
 77.41.122.16 - - [24/May/2013:23:37:58 +0200] "-" 400 0 "-" "-"
 77.41.122.16 - - [24/May/2013:23:37:58 +0200] "-" 400 0 "-" "-"
 77.41.122.16 - - [24/May/2013:23:37:58 +0200] "-" 400 0 "-" "-"
-77.41.122.16 - - [24/May/2013:23:38:03 +0200] "POST /app/engine/api.php HTTP/1.1" 200 80 "http://lag.ru/index.php" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31"
+77.41.122.16 - - [24/May/2013:23:38:03 +0200] "POST /app/engine/api.php HTTP/1.1" 200 80 "http://lag.ru/index.php" "Mozilla/5.0 (Windows NT 6.1; WOW64) Googlebot/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31"
 77.41.122.16 - - [24/May/2013:23:38:05 +0200] "POST /chat.php?id=a65 HTTP/1.1" 200 31 "http://lag.ru/index.php" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31"
 77.41.122.16 - - [24/May/2013:23:38:23 +0200] "POST /app/modules/randomgallery.php HTTP/1.1" 200 46542 "http://lag.ru/index.php" "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31"

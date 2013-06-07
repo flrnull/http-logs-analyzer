@@ -41,18 +41,30 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     } else {
         // Parse search engines scan
         const char * agentChars = agentRes.c_str();
+        if (config->debugMode == 1) {
+            Debug::print("Parser::parse: trying to found " + std::string(GOOGLE_PATTERN) + " in agent" + agentRes);
+        }
         std::string googleRes = matchRegex(&(*logRegExpsCompiled).google, agentChars, config);
         if (googleRes.length() > 3) {
             Result::google++;
         } else {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: trying to found " + std::string(BING_PATTERN) + " in agent" + agentRes);
+            }
             std::string bingRes = matchRegex(&(*logRegExpsCompiled).bing, agentChars, config);
             if (bingRes.length() > 3) {
                 Result::bing++;
             } else {
+                if (config->debugMode == 1) {
+                    Debug::print("Parser::parse: trying to found " + std::string(BAIDU_PATTERN) + " in agent" + agentRes);
+                }
                 std::string baiduRes = matchRegex(&(*logRegExpsCompiled).baidu, agentChars, config);
                 if (baiduRes.length() > 3) {
                     Result::baidu++;
                 } else {
+                    if (config->debugMode == 1) {
+                        Debug::print("Parser::parse: trying to found " + std::string(YANDEX_PATTERN) + " in agent" + agentRes);
+                    }
                     std::string yandexRes = matchRegex(&(*logRegExpsCompiled).yandex, agentChars, config);
                     if (yandexRes.length() > 3) {
                         Result::yandex++;

@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include "Config.h"
 
 namespace Result
 {
@@ -17,11 +18,13 @@ namespace Result
     extern unsigned int bing;
     extern unsigned int baidu;
     extern unsigned int yandex;
+    extern std::map<std::string,int> topUrlMap;
     // Temp values
     extern std::map<std::string,int> ipAgentMap;
     extern std::map<std::string,int> urlMap;
     // Actions
     void display();
+    void calcTopUrls(Config * config);
 };
   
 

@@ -25,6 +25,7 @@ public:
     std::string agentPattern;
     std::string urlPattern;
     std::string trafficPattern;
+    int topUrlsCount;
 };
 
 #endif	/* CONFIG_H */

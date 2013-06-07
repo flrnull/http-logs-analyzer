@@ -41,6 +41,7 @@ int main(int argc, char **argv)
     // Calc unique users and urls count
     Result::visitors = Result::ipAgentMap.size();
     Result::urls = Result::urlMap.size();
+    Result::calcTopUrls(config.get());
     // Result
     Result::display();   
     return 0;

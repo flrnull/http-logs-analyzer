@@ -1,4 +1,5 @@
 #include "Result.h"
+#include "Debug.h"
 #include <iostream>
 
 unsigned int Result::views = 0;
@@ -11,6 +12,7 @@ unsigned int Result::google = 0;
 unsigned int Result::bing = 0;
 unsigned int Result::baidu = 0;
 unsigned int Result::yandex = 0;
+std::map<std::string,int> Result::topUrlMap;
 
 
 std::map<std::string,int> Result::ipAgentMap;
@@ -29,6 +31,66 @@ void Result::display() {
     std::cout << "      Bing: " << Result::bing << "," << std::endl;
     std::cout << "      Baidu: " << Result::baidu << "," << std::endl;
     std::cout << "      Yandex: " << Result::yandex << std::endl;
+    std::cout << "  }," << std::endl;
+    std::cout << "  topUrls: {" << std::endl;
+    std::map<std::string,int>::iterator it = Result::topUrlMap.begin();
+    int topCount = Result::topUrlMap.size();
+    for (int i = 0; i < topCount; i++) {
+        std::advance(it, i);
+        std::cout << "      " << it->first << ": " << it->second;
+        if (i < topCount-1) {
+            std::cout << ",";
+        }
+        std::cout << std::endl;
+    }
     std::cout << "  }" << std::endl;
     std::cout << "}" << std::endl;
+}
+
+// @TODO finish this!
+void Result::calcTopUrls(Config * config) {
+    if (config->debugMode) {
+        Debug::print("Result::calcTopUrls: calc started");
+    }
+    std::map<std::string,int>::iterator it = Result::urlMap.begin();
+    std::map<std::string,int>::iterator itRes = Result::topUrlMap.begin();
+    int urlMapSize = Result::urlMap.size();
+    int topCount = 0;
+    bool isAdded;
+    std::string tempUrl;
+    int tempCount;
+    for(int i = 0; i < urlMapSize; i++) {
+        Debug::print("Result::calcTopUrls: check element " + it->first);
+        // First item add to top
+        if (!topCount) {
+            if (config->debugMode) {
+                Debug::print("Result::calcTopUrls: first element is added " + it->first);
+            }
+            std::advance(it, 0);
+            Result::topUrlMap[it->first] = it->second;
+            topCount++;
+        } else {
+            /*std::advance(it, i);
+            // If we already have any urls in top
+            if (topCount) {
+                isAdded = false;
+                // Go through current top from the largest to the smallest
+                for(int j = 0; j < topCount && !isAdded; j++) {
+                    std::advance(itRes, j);
+                    // If current value bigger than in top we add it
+                    if (it->second > itRes->second) {
+                       tempUrl = itRes->first;
+                       tempCount = itRes->second;
+                       Result::topUrlMap[it->first] = it->second;
+                       topCount++;
+                       isAdded = true;
+                    }
+                    // If topUrl exceed limit we should remove the smallest
+                    if (isAdded && topCount > config->topUrlsCount) {
+                        
+                    }
+                }
+            }*/
+        }
+    }
 }

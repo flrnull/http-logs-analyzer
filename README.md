@@ -1,5 +1,5 @@
 Http Logs Analyzer
-=====
+==================
 
 Usage
 -----
@@ -19,12 +19,24 @@ Output
 ```shell
 {
   views: 8,
-  visitors: 3,
+  visitors: 4,
   urls: 5,
   traffic: 93995,
   lines: 12,
   fails: 4,
+  Crawlers: {
+      Google: 1,
+      Bing: 0,
+      Baidu: 0,
+      Yandex: 0
+  },
+  topUrls: {
+      'http://lag.ru/index.php': 7,
+      'http://wiki.org/index.php#lang=en': 1,
+      'http://bim-bom.ru/': 1
+  }
 }
+
 ```
 
 Install
@@ -36,3 +48,8 @@ cd http-logs-analyzer
 make
 cp dist/Release/http-logs-analyzer /usr/local/bin
 ```
+
+License
+-------
+
+MIT
