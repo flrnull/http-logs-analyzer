@@ -13,6 +13,10 @@ namespace Result
     extern unsigned long traffic;
     extern unsigned int lines;
     extern unsigned int fails;
+    extern unsigned int google;
+    extern unsigned int bing;
+    extern unsigned int baidu;
+    extern unsigned int yandex;
     // Temp values
     extern std::map<std::string,int> ipAgentMap;
     extern std::map<std::string,int> urlMap;

@@ -7,6 +7,11 @@ unsigned int Result::urls = 0;
 unsigned long Result::traffic = 0;
 unsigned int Result::lines = 0;
 unsigned int Result::fails = 0;
+unsigned int Result::google = 0;
+unsigned int Result::bing = 0;
+unsigned int Result::baidu = 0;
+unsigned int Result::yandex = 0;
+
 
 std::map<std::string,int> Result::ipAgentMap;
 std::map<std::string,int> Result::urlMap;
@@ -19,5 +24,11 @@ void Result::display() {
     std::cout << "  traffic: " << Result::traffic << "," << std::endl;
     std::cout << "  lines: " << Result::lines << "," << std::endl;
     std::cout << "  fails: " << Result::fails << "," << std::endl;
+    std::cout << "  Crawlers: {" << std::endl;
+    std::cout << "      Google: " << Result::google << "," << std::endl;
+    std::cout << "      Bing: " << Result::bing << "," << std::endl;
+    std::cout << "      Baidu: " << Result::baidu << "," << std::endl;
+    std::cout << "      Yandex: " << Result::yandex << std::endl;
+    std::cout << "  }" << std::endl;
     std::cout << "}" << std::endl;
 }

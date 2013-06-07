@@ -13,6 +13,10 @@ typedef struct {
     std::string agent;
     std::string url;
     std::string traffic;
+    std::string google;
+    std::string bing;
+    std::string baidu;
+    std::string yandex;
 } LogRegexTexts;
 
 /* Compiled regexps */
@@ -21,6 +25,10 @@ typedef struct {
     regex_t agent;
     regex_t url;
     regex_t traffic;
+    regex_t google;
+    regex_t bing;
+    regex_t baidu;
+    regex_t yandex;
 } LogRegexCompiled;
 
 /*
@@ -32,6 +40,10 @@ static void logRegexTextsFill(LogRegexTexts *lrt, Config * config) {
     (*lrt).agent = (config->agentPattern.length() > 4) ? config->agentPattern : AGENT_PATTERN;
     (*lrt).url = (config->urlPattern.length() > 4) ? config->urlPattern : URL_PATTERN;
     (*lrt).traffic = (config->trafficPattern.length() > 4) ? config->trafficPattern : TRAFFIC_PATTERN;
+    (*lrt).google = GOOGLE_PATTERN;
+    (*lrt).bing = BING_PATTERN;
+    (*lrt).baidu = BAIDU_PATTERN;
+    (*lrt).yandex = YANDEX_PATTERN;
 }
 
 /*
@@ -43,15 +55,18 @@ static void logRegexForCompileFill(LogRegexCompiled *lrc) {
     regex_t agentRegex;
     regex_t urlRegex;
     regex_t trafficRegex;
+    regex_t googleRegex;
+    regex_t bingRegex;
+    regex_t baiduRegex;
+    regex_t yandexRegex;
     (*lrc).ip = ipRegex;
     (*lrc).agent = agentRegex;
     (*lrc).url = urlRegex;
     (*lrc).traffic = trafficRegex;
-    /* @TODO fix segfault on linux */
-    /* regfree(&ipRegex);
-    regfree(&agentRegex);
-    regfree(&urlRegex);
-    regfree(&trafficRegex); */
+    (*lrc).google = googleRegex;
+    (*lrc).bing = bingRegex;
+    (*lrc).baidu = baiduRegex;
+    (*lrc).yandex = yandexRegex;
 }
 
 /*
@@ -76,6 +91,10 @@ static LogRegexCompiled logRegexCompileAll(const LogRegexTexts * regexps, LogReg
     compileRegex(&(*lrComp).agent, (*regexps).agent.c_str(), config);
     compileRegex(&(*lrComp).url, (*regexps).url.c_str(), config);
     compileRegex(&(*lrComp).traffic, (*regexps).traffic.c_str(), config);
+    compileRegex(&(*lrComp).google, (*regexps).google.c_str(), config);
+    compileRegex(&(*lrComp).bing, (*regexps).bing.c_str(), config);
+    compileRegex(&(*lrComp).baidu, (*regexps).baidu.c_str(), config);
+    compileRegex(&(*lrComp).yandex, (*regexps).yandex.c_str(), config);
 }
 
 /*

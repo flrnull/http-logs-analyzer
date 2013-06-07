@@ -38,6 +38,28 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     if (agentRes.length() < 5) {
         Result::fails++;
         return false;
+    } else {
+        // Parse search engines scan
+        const char * agentChars = agentRes.c_str();
+        std::string googleRes = matchRegex(&(*logRegExpsCompiled).google, agentChars, config);
+        if (googleRes.length() > 3) {
+            Result::google++;
+        } else {
+            std::string bingRes = matchRegex(&(*logRegExpsCompiled).bing, agentChars, config);
+            if (bingRes.length() > 3) {
+                Result::bing++;
+            } else {
+                std::string baiduRes = matchRegex(&(*logRegExpsCompiled).baidu, agentChars, config);
+                if (baiduRes.length() > 3) {
+                    Result::baidu++;
+                } else {
+                    std::string yandexRes = matchRegex(&(*logRegExpsCompiled).yandex, agentChars, config);
+                    if (yandexRes.length() > 3) {
+                        Result::yandex++;
+                    }
+                }
+            }
+        }
     }
     
     // Parse IP
