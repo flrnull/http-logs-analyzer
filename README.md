@@ -26,6 +26,7 @@ Install
 -------
 
 ```shell
+git clone git://github.com/flrnull/http-logs-analyzer.git
 cd http-logs-analyzer
 make
 cp dist/Release/http-logs-analyzer /usr/local/bin
