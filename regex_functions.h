@@ -27,11 +27,11 @@ typedef struct {
  * Text regexps representations 
  * for different log line parts.
  */
-static void logRegexTextsFill(LogRegexTexts *lrt) {
-    (*lrt).ip = IP_PATTERN;
-    (*lrt).agent = AGENT_PATTERN;
-    (*lrt).url = URL_PATTERN;
-    (*lrt).traffic = TRAFFIC_PATTERN;
+static void logRegexTextsFill(LogRegexTexts *lrt, Config * config) {
+    (*lrt).ip = (config->ipPattern.length() > 4) ? config->ipPattern : IP_PATTERN;
+    (*lrt).agent = (config->agentPattern.length() > 4) ? config->agentPattern : AGENT_PATTERN;
+    (*lrt).url = (config->urlPattern.length() > 4) ? config->urlPattern : URL_PATTERN;
+    (*lrt).traffic = (config->trafficPattern.length() > 4) ? config->trafficPattern : TRAFFIC_PATTERN;
 }
 
 /*

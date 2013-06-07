@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     // Create regex
     LogRegexTexts logRegExpsTexts;
     LogRegexCompiled logRegExpsCompiled;
-    logRegexTextsFill(&logRegExpsTexts);
+    logRegexTextsFill(&logRegExpsTexts, config.get());
     logRegexForCompileFill(&logRegExpsCompiled);
     logRegexCompileAll(&logRegExpsTexts, &logRegExpsCompiled, config.get());    
     // Parse file

@@ -10,6 +10,10 @@ Config* Config::_instance = 0;
 Config::Config()
     : logName("./example/access_log")
     , debugMode(0)
+    , ipPattern("")
+    , agentPattern("")
+    , urlPattern("")
+    , trafficPattern("")
 {
     if (this->debugMode == 1) {
         Debug::print("<Config constructor>");
@@ -31,7 +35,7 @@ Config * Config::getInstance() {
 
 void Config::parseArgs(int argc, char **argv) {
     int c;
-    while ((c = getopt(argc, argv, "df:")) != -1) {
+    while ((c = getopt(argc, argv, "df:i:a:u:t:")) != -1) {
         switch(c) {
             case 'f':
                 this->logName = optarg;
@@ -39,8 +43,33 @@ void Config::parseArgs(int argc, char **argv) {
             case 'd':
                 this->debugMode = 1;
                 break;
+            // Patterns
+            case 'i':
+                this->ipPattern = optarg;
+                break;
+            case 'a':
+                this->agentPattern = optarg;
+                break;
+            case 'u':
+                this->urlPattern = optarg;
+                break;
+            case 't':
+                this->trafficPattern = optarg;
+                break;    
             case '?':
                 if (optopt == 'f') {
+                    exit(1);
+                }
+                if (optopt == 'i') {
+                    exit(1);
+                }
+                if (optopt == 'a') {
+                    exit(1);
+                }
+                if (optopt == 'u') {
+                    exit(1);
+                }
+                if (optopt == 't') {
                     exit(1);
                 }
                 break;

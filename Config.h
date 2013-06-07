@@ -20,6 +20,10 @@ public:
     // Options
     std::string logName;
     int debugMode;
+    std::string ipPattern;
+    std::string agentPattern;
+    std::string urlPattern;
+    std::string trafficPattern;
 };
 
 #endif	/* CONFIG_H */
