@@ -24,7 +24,7 @@ Output
   traffic: 93995,
   lines: 12,
   fails: 4,
-  Crawlers: {
+  crawlers: {
       Google: 1,
       Bing: 0,
       Baidu: 0,

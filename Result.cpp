@@ -26,7 +26,7 @@ void Result::display() {
     std::cout << "  traffic: " << Result::traffic << "," << std::endl;
     std::cout << "  lines: " << Result::lines << "," << std::endl;
     std::cout << "  fails: " << Result::fails << "," << std::endl;
-    std::cout << "  Crawlers: {" << std::endl;
+    std::cout << "  crawlers: {" << std::endl;
     std::cout << "      Google: " << Result::google << "," << std::endl;
     std::cout << "      Bing: " << Result::bing << "," << std::endl;
     std::cout << "      Baidu: " << Result::baidu << "," << std::endl;
