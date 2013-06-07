@@ -5,6 +5,7 @@
 #include "regex_functions.h"
 #include "Result.h"
 #include <sstream>
+#include "common_functions.h"
 
 Parser::Parser(Config *config)
 : config(config)
@@ -91,11 +92,12 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     }
     std::string trafficRes = matchRegex(&(*logRegExpsCompiled).traffic, logLineChars, config);
     if (trafficRes.length()) {
-        std::istringstream trafficIStream(trafficRes);
-        int traffic;
-        trafficIStream >> traffic;
+        Debug::print("\n -> TrafficRes: " + trafficRes);
+        int traffic = 0;
+        traffic = StringToNumber(trafficRes, 0);
+        printf("\n -> Traffic %d \n", traffic);
         Result::traffic += traffic;
-        printf("\n -> %d \n", traffic);
+        printf("\n -> TrafficAll %d \n", Result::traffic);
     }
     
     // For each success line
