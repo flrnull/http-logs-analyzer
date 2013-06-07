@@ -34,7 +34,7 @@ void Result::display() {
     std::cout << "  }," << std::endl;
     std::cout << "  topUrls: {" << std::endl;
     std::map<std::string,int>::iterator it = Result::topUrlMap.begin();
-    int topCount = Result::topUrlMap.size();
+    int topCount = Result::topUrlMap.size()-1;
     for (int i = 0; i < topCount; i++) {
         std::advance(it, i);
         std::cout << "      " << it->first << ": " << it->second;
@@ -60,7 +60,6 @@ void Result::calcTopUrls(Config * config) {
     std::string tempUrl;
     int tempCount;
     for(int i = 0; i < urlMapSize; i++) {
-        Debug::print("Result::calcTopUrls: check element " + it->first);
         // First item add to top
         if (!topCount) {
             if (config->debugMode) {
@@ -70,27 +69,28 @@ void Result::calcTopUrls(Config * config) {
             topCount++;
         } else {
             std::advance(it, i);
-            /*
             // If we already have any urls in top
             if (topCount) {
                 isAdded = false;
                 // Go through current top from the largest to the smallest
+                // First element in top should be the largest
                 for(int j = 0; j < topCount && !isAdded; j++) {
                     std::advance(itRes, j);
                     // If current value bigger than in top we add it
                     if (it->second > itRes->second) {
-                       tempUrl = itRes->first;
-                       tempCount = itRes->second;
-                       Result::topUrlMap[it->first] = it->second;
-                       topCount++;
-                       isAdded = true;
+                        if (config->debugMode) {
+                            Debug::print("Result::calcTopUrls: " + it->first + " count is bigger");
+                        }
+                        Result::topUrlMap[it->first] = it->second;
+                        topCount++;
+                        isAdded = true;
                     }
                     // If topUrl exceed limit we should remove the smallest
                     if (isAdded && topCount > config->topUrlsCount) {
                         
                     }
                 }
-            }*/
+            }
         }
     }
 }

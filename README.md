@@ -31,12 +31,11 @@ Output
       Yandex: 0
   },
   topUrls: {
-      'http://lag.ru/index.php': 7,
-      'http://wiki.org/index.php#lang=en': 1,
-      'http://bim-bom.ru/': 1
+      '/app/engine/api.php' : 2,
+      '/app/modules/randomgallery.php' : 2,
+      '/mod.php' : 1
   }
 }
-
 ```
 
 Install
