@@ -28,5 +28,5 @@ Install
 ```shell
 cd http-logs-analyzer
 make
-cp dist/Release/http-logs-analyzer ./
+cp dist/Release/http-logs-analyzer /usr/local/bin
 ```
