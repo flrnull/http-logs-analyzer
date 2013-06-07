@@ -101,7 +101,7 @@ static std::string matchRegex(regex_t * r, const char * to_match, Config * confi
     }
     start = m[1].rm_so + (p - to_match);
     finish = m[1].rm_eo + (p - to_match);
-    char buffer[500]; 
+    char buffer[(finish - start)+100]; 
     sprintf(buffer, "'%.*s' ", (finish - start), (to_match + start));
     std::string result(buffer);
     if (config->debugMode) {

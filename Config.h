@@ -16,6 +16,7 @@ public:
     static Config * getInstance();
     void parseArgs(int argc, char **argv);
     void debug();
+    void help();
 
     // Options
     std::string logName;

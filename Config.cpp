@@ -35,13 +35,17 @@ Config * Config::getInstance() {
 
 void Config::parseArgs(int argc, char **argv) {
     int c;
-    while ((c = getopt(argc, argv, "df:i:a:u:t:")) != -1) {
+    while ((c = getopt(argc, argv, "dhf:i:a:u:t:")) != -1) {
         switch(c) {
-            case 'f':
-                this->logName = optarg;
-                break;
             case 'd':
                 this->debugMode = 1;
+                break;
+            case 'h':
+                Config::help();
+                exit(0);
+                break;
+            case 'f':
+                this->logName = optarg;
                 break;
             // Patterns
             case 'i':
@@ -88,5 +92,21 @@ void Config::debug() {
         Debug::print(debugString);
         Debug::print("----> logName: " + this->logName);
     }
+}
+
+void Config::help() {
+    std::cout << std::endl;
+    std::cout << "Program" << std::endl;
+    std::cout << std::endl;
+    std::cout << "  HTTP logs analyzer" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Params" << std::endl;
+    std::cout << std::endl;
+    std::cout << "  -f — Log file. Example: ./http-logs-analyzer -f example/access_log" << std::endl;
+    std::cout << "  -d — Debug mode. Example: ./http-logs-analyzer -f example/access_log -d" << std::endl;
+    std::cout << "  -i — IP pattern. Example: ./http-logs-analyzer -f example/access_log -i \"^([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)\"" << std::endl;
+    std::cout << "  -a — UserAgent pattern. Example: ./http-logs-analyzer -f example/access_log -a \"\\\" \\\"([^\\\"]+)\\\"\"" << std::endl;
+    std::cout << "  -u — URL pattern. Example: ./http-logs-analyzer -f example/access_log -u \"\\\"[a-zA-Z]+T (/[^\\\"]+) HTTP\"" << std::endl;
+    std::cout << "  -t — Traffic pattern. Example: ./http-logs-analyzer -f example/access_log -t \"HTTP/[0-9]\\\\.[0-9]\\\" [0-9][0-9][0-9]? ([0-9]+)[0-9 ]*\\\"\"" << std::endl;
 }
 
