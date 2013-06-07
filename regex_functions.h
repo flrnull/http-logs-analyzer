@@ -47,10 +47,11 @@ static void logRegexForCompileFill(LogRegexCompiled *lrc) {
     (*lrc).agent = agentRegex;
     (*lrc).url = urlRegex;
     (*lrc).traffic = trafficRegex;
-    regfree(&ipRegex);
+    /* @TODO fix segfault on linux */
+    /* regfree(&ipRegex);
     regfree(&agentRegex);
     regfree(&urlRegex);
-    regfree(&trafficRegex);
+    regfree(&trafficRegex); */
 }
 
 /*
