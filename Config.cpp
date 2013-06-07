@@ -1,5 +1,6 @@
 #include "Config.h"
 #include "Debug.h"
+#include <stdlib.h>
 #include <iostream>
 #include <sstream>
 

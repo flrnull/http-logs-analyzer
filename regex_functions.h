@@ -2,6 +2,7 @@
 #define	REGEX_H
 
 #include <regex.h>
+#include <stdio.h>
 #include "Config.h"
 #include "Debug.h"
 #include "Patterns.h"

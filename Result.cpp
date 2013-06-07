@@ -7,6 +7,7 @@ unsigned int Result::urls = 0;
 unsigned int Result::traffic = 0;
 unsigned int Result::lines = 0;
 unsigned int Result::fails = 0;
+
 std::map<std::string,int> Result::ipAgentMap;
 std::map<std::string,int> Result::urlMap;
 

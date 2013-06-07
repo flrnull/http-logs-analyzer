@@ -1,10 +1,11 @@
+#include <stdlib.h>
 #include <memory>
+#include <iostream>
+#include <fstream>
 #include "Config.h"
 #include "Debug.h"
 #include "Result.h"
 #include "Parser.h"
-#include <iostream>
-#include <fstream>
 #include "regex_functions.h"
 
 int main(int argc, char **argv)

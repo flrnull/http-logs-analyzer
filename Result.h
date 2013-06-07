@@ -2,6 +2,7 @@
 #define	RESULT_H
 
 #include <map>
+#include <string>
 
 namespace Result
 {
