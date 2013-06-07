@@ -38,7 +38,7 @@ OBJECTDEBUGFILES= \
 	${OBJECTDEBUGDIR}/main.o
 
 # Release build
-${CND_DISTDIR}/${CND_CONF}/http-logs-analyzer.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/http-logs-analyzer.exe: clean ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/http-logs-analyzer ${OBJECTFILES}
 
