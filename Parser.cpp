@@ -92,12 +92,12 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
     }
     std::string trafficRes = matchRegex(&(*logRegExpsCompiled).traffic, logLineChars, config);
     if (trafficRes.length()) {
-        Debug::print("\n -> TrafficRes: " + trafficRes);
+        if (config->debugMode == 1) {
+            Debug::print("Parser::parse: trafficRes: " + trafficRes);
+        }
         int traffic = 0;
         traffic = StringToNumber(trafficRes, 0);
-        printf("\n -> Traffic %d \n", traffic);
         Result::traffic += traffic;
-        printf("\n -> TrafficAll %d \n", Result::traffic);
     }
     
     // For each success line

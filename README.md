@@ -1,4 +1,4 @@
-Http Logs Analyzer (under construction)
+Http Logs Analyzer
 =====
 
 Usage
@@ -16,8 +16,17 @@ Output
   views: 8,
   visitors: 3,
   urls: 5,
-  traffic: 0,
+  traffic: 93995,
   lines: 12,
   fails: 4,
 }
+```
+
+Install
+-------
+
+```shell
+cd http-logs-analyzer
+make
+cp dist/Release/http-logs-analyzer ./
 ```
