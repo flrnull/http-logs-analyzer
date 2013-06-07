@@ -86,8 +86,8 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
         // Save to IPs map for calc uniq visitors
         std::ostringstream ss;
         ss << agentRes.length();
-        std::string agentResCount = ss.str();
-        std::string mapKey = ipRes + agentResCount;
+        std::string agentResLength = ss.str();
+        std::string mapKey = ipRes + agentResLength;
         std::map<std::string,int>::iterator it;
         it = Result::ipAgentMap.find(mapKey);
         if (it == Result::ipAgentMap.end()) {
@@ -107,16 +107,19 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
         return false;
     } else {
         // Save to URLs map for calc uniq URLs
-        std::ostringstream sss;
-        sss << urlRes.length();
-        std::string urlResCount = sss.str();
-        std::string urlMapKey = ipRes + urlResCount;
-        std::map<std::string,int>::iterator it;
-        it = Result::urlMap.find(urlMapKey);
-        if (it == Result::urlMap.end()) {
+        std::string urlMapKey = urlRes;
+        std::map<std::string,int>::iterator itUrl;
+        itUrl = Result::urlMap.find(urlMapKey);
+        if (itUrl == Result::urlMap.end()) {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + urlMapKey + " is not in our reesult list, added");
+            }
             Result::urlMap[urlMapKey] = 1;
         } else {
-            it->second++;
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + urlMapKey + " is already in our reesult list, increment");
+            }
+            itUrl->second++;
         }
     }
     

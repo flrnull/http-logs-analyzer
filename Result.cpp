@@ -66,11 +66,11 @@ void Result::calcTopUrls(Config * config) {
             if (config->debugMode) {
                 Debug::print("Result::calcTopUrls: first element is added " + it->first);
             }
-            std::advance(it, 0);
             Result::topUrlMap[it->first] = it->second;
             topCount++;
         } else {
-            /*std::advance(it, i);
+            std::advance(it, i);
+            /*
             // If we already have any urls in top
             if (topCount) {
                 isAdded = false;
