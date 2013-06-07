@@ -4,7 +4,7 @@
 unsigned int Result::views = 0;
 unsigned int Result::visitors = 0;
 unsigned int Result::urls = 0;
-unsigned int Result::traffic = 0;
+unsigned long Result::traffic = 0;
 unsigned int Result::lines = 0;
 unsigned int Result::fails = 0;
 

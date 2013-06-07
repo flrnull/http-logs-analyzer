@@ -10,7 +10,7 @@ namespace Result
     extern unsigned int views;
     extern unsigned int visitors;
     extern unsigned int urls;
-    extern unsigned int traffic;
+    extern unsigned long traffic;
     extern unsigned int lines;
     extern unsigned int fails;
     // Temp values
