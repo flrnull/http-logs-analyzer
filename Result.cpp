@@ -33,18 +33,73 @@ void Result::display() {
     std::cout << "      Yandex: " << Result::yandex << std::endl;
     std::cout << "  }," << std::endl;
     std::cout << "  topUrls: {" << std::endl;
-    std::map<std::string,int>::iterator it = Result::topUrlMap.begin();
-    int topCount = Result::topUrlMap.size()-1;
-    for (int i = 0; i < topCount; i++) {
-        std::advance(it, i);
+    typedef std::map<std::string,int>::const_iterator UrlMapIterator;
+    for (UrlMapIterator it = Result::topUrlMap.begin(); it != Result::topUrlMap.end(); it++) {
         std::cout << "      " << it->first << ": " << it->second;
-        if (i < topCount-1) {
+        if (it != Result::topUrlMap.end()) {
             std::cout << ",";
         }
         std::cout << std::endl;
     }
     std::cout << "  }" << std::endl;
     std::cout << "}" << std::endl;
+}
+
+void Result::topUrlTryToAdd(std::string urlMapKey, int count, Config * config) {
+    if (config->debugMode) {
+        Debug::print("Result::topUrlTryToAdd: calc started");
+    }
+    // First item add to top
+    int topCount = Result::topUrlMap.size();
+    std::map<std::string,int>::iterator itRes;
+    bool isAdded, isDeleted;
+    std::string tempUrl;
+    int tempCount;
+    if (!topCount) {
+        if (config->debugMode) {
+            Debug::print("Result::topUrlTryToAdd: first element is added " + urlMapKey);
+        }
+        Result::topUrlMap[urlMapKey] = count;
+        return;
+    } else {
+        itRes = Result::topUrlMap.begin();
+        isAdded = false;
+        isDeleted = false;
+        // Go through current top from the largest to the smallest
+        // First element in top should be the largest
+        for(int j = 0; j < topCount && !isAdded; j++) {
+            std::advance(itRes, j);
+            // If current value bigger than in top we add it
+            if (count > itRes->second) {
+                if (config->debugMode) {
+                    Debug::print("Result::calcTopUrls: " + urlMapKey + " count is bigger");
+                }
+                Result::topUrlMap[urlMapKey] = count;
+                topCount++;
+                isAdded = true;
+            }
+        }
+        // If topUrl exceed limit we should remove the smallest
+        tempUrl = "";
+        tempCount = 0;
+        if (isAdded && topCount > config->topUrlsCount) {
+            for(int z = 0; z < topCount && !isDeleted; z++) {
+                std::advance(itRes, z);
+                if (itRes->second < tempCount && tempCount) {
+                    // we save smallest values to temp params
+                    tempUrl = itRes->first;
+                    tempCount = itRes->second;
+                }
+            }
+            // delete saved temp param
+            if (tempCount) {
+                if (config->debugMode) {
+                    Debug::print("Result::calcTopUrls: remove the smallest url " + tempUrl);
+                }
+                Result::topUrlMap.erase(tempUrl);
+            }
+        }
+    }
 }
 
 void Result::calcTopUrls(Config * config) {

@@ -121,6 +121,9 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
             }
             itUrl->second++;
         }
+        // Add URL to top URLs
+        int urlCount = (itUrl == Result::urlMap.end()) ? 1 : itUrl->second;
+        Result::topUrlTryToAdd(urlMapKey, urlCount, config);
     }
     
     // Parse traffic

@@ -24,6 +24,7 @@ namespace Result
     extern std::map<std::string,int> urlMap;
     // Actions
     void display();
+    void topUrlTryToAdd(std::string urlMapKey, int count, Config * config);
     void calcTopUrls(Config * config);
 };
   
