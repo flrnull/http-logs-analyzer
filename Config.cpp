@@ -14,7 +14,7 @@ Config::Config()
     , agentPattern("")
     , urlPattern("")
     , trafficPattern("")
-    , topUrlsLimit(10)
+    , topUrlsLimit(2)
 {
     if (this->debugMode == 1) {
         Debug::print("<Config constructor>");

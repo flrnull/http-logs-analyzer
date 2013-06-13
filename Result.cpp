@@ -114,6 +114,15 @@ void Result::topUrlTryToAdd(std::string urlMapKey, int count, Config * config) {
                 }
                 Result::topUrlMap.erase(removeIt);
             }
+        } else {
+            if (config->debugMode) {
+                int isAddedNum = (isAdded) ? 1 : 0;
+                Debug::print("Result::topUrlTryToAdd: element is not added or count is under limit");
+                Debug::print("Result::topUrlTryToAdd: count under limit is: ");
+                Debug::print(topCount);
+                Debug::print("Result::topUrlTryToAdd: isAdded is: ");
+                Debug::print(isAddedNum);
+            }
         }
     }
 }

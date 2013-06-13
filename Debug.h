@@ -6,6 +6,7 @@
 namespace Debug
 {
     void print(std::string string);
+    void print(int number);
 };
   
 
