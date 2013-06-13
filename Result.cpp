@@ -76,13 +76,19 @@ void Result::topUrlTryToAdd(std::string urlMapKey, int count, Config * config) {
         for(int j = 0; (j < topCount) && !isAdded; j++) {
             std::advance(itRes, j);
             // If current value bigger than in top we add it
-            if (count >= itRes->second) {
+            if ((count >= itRes->second) || (topCount < config->topUrlsLimit)) {
                 if (config->debugMode) {
                     Debug::print("Result::topUrlTryToAdd: " + urlMapKey + " count is bigger");
                 }
                 Result::topUrlMap[urlMapKey] = count;
                 topCount++;
                 isAdded = true;
+            } else {
+                if (config->debugMode) {
+                    Debug::print("Result::topUrlTryToAdd: count is smaller");
+                    Debug::print(count);
+                    Debug::print(itRes->second);
+                }
             }
         }
         // If topUrl exceed limit we should remove the smallest
