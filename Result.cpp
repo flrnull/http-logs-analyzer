@@ -76,9 +76,11 @@ void Result::topUrlTryToAdd(std::string urlMapKey, int count, Config * config) {
         for(int j = 0; (j < topCount) && !isAdded; j++) {
             std::advance(itRes, j);
             // If current value bigger than in top we add it
-            if ((count >= itRes->second) || (topCount < config->topUrlsLimit)) {
+            if ((count > itRes->second) || (topCount < config->topUrlsLimit)) {
                 if (config->debugMode) {
                     Debug::print("Result::topUrlTryToAdd: " + urlMapKey + " count is bigger");
+                    Debug::print(count);
+                    Debug::print(itRes->second);
                 }
                 Result::topUrlMap[urlMapKey] = count;
                 topCount++;
@@ -94,40 +96,46 @@ void Result::topUrlTryToAdd(std::string urlMapKey, int count, Config * config) {
         // If topUrl exceed limit we should remove the smallest
         tempUrl = "";
         tempCount = 0;
-        if (isAdded && (topCount > config->topUrlsLimit)) {
-            if (config->debugMode) {
-                Debug::print("Result::topUrlTryToAdd: topCount is bigger than topUrlsLimit");
-            }
-            for (mapIterator iterTop = Result::topUrlMap.begin(); iterTop != Result::topUrlMap.end(); iterTop++) {
-                if ((iterTop->second < tempCount) || !tempCount) {
-                    // we save smallest values to temp params
-                    if (config->debugMode) {
-                        Debug::print("Result::topUrlTryToAdd: (itRes->second < tempCount) && tempCount");
-                    }
-                    tempUrl = iterTop->first;
-                    tempCount = iterTop->second;
-                } else {
-                    if (config->debugMode) {
-                        Debug::print("Result::topUrlTryToAdd: false return by if (itRes->second < tempCount) && tempCount");
-                    }
-                }
-            }
-            // delete saved temp param
-            if (tempCount) {
-                std::map<std::string,int>::iterator removeIt = Result::topUrlMap.find(tempUrl);
+        if (Result::topUrlMap.find(tempUrl) != Result::topUrlMap.end()) {
+            if (isAdded && (topCount > config->topUrlsLimit)) {
                 if (config->debugMode) {
-                    Debug::print("Result::topUrlTryToAdd: remove the smallest url: " + tempUrl);
+                    Debug::print("Result::topUrlTryToAdd: topCount is bigger than topUrlsLimit");
                 }
-                Result::topUrlMap.erase(removeIt);
+                for (mapIterator iterTop = Result::topUrlMap.begin(); iterTop != Result::topUrlMap.end(); iterTop++) {
+                    if ((iterTop->second < tempCount) || !tempCount) {
+                        // we save smallest values to temp params
+                        if (config->debugMode) {
+                            Debug::print("Result::topUrlTryToAdd: we save smallest values to temp params: " + iterTop->first);
+                        }
+                        tempUrl = iterTop->first;
+                        tempCount = iterTop->second;
+                    } else {
+                        if (config->debugMode) {
+                            Debug::print("Result::topUrlTryToAdd: false return by if (itRes->second < tempCount) && tempCount");
+                        }
+                    }
+                }
+                // delete saved temp param
+                if (tempCount) {
+                    std::map<std::string,int>::iterator removeIt = Result::topUrlMap.find(tempUrl);
+                    if (config->debugMode) {
+                        Debug::print("Result::topUrlTryToAdd: remove the smallest url: " + tempUrl);
+                    }
+                    Result::topUrlMap.erase(removeIt);
+                }
+            } else {
+                if (config->debugMode) {
+                    int isAddedNum = (isAdded) ? 1 : 0;
+                    Debug::print("Result::topUrlTryToAdd: element is not deleted, because nothing was added or top count is under limits");
+                    Debug::print("Result::topUrlTryToAdd: topCocount: ");
+                    Debug::print(topCount);
+                    Debug::print("Result::topUrlTryToAdd: isAdded is: ");
+                    Debug::print(isAddedNum);
+                }
             }
         } else {
             if (config->debugMode) {
-                int isAddedNum = (isAdded) ? 1 : 0;
-                Debug::print("Result::topUrlTryToAdd: element is not added or count is under limit");
-                Debug::print("Result::topUrlTryToAdd: count under limit is: ");
-                Debug::print(topCount);
-                Debug::print("Result::topUrlTryToAdd: isAdded is: ");
-                Debug::print(isAddedNum);
+                Debug::print("Result::topUrlTryToAdd: element is not deleted, because it duplicated " + tempUrl);
             }
         }
     }
