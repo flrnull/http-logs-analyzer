@@ -7,7 +7,7 @@ namespace Debug
 {
     void print(std::string string);
     void print(int number);
-    void Debug::print(std::string string, int number);
+    void print(std::string string, int number);
 };
   
 
