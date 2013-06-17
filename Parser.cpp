@@ -135,7 +135,7 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
         Result::fails++;
         return false;
     } else {
-        // Save to URLs map for calc uniq URLs
+        // Save to Refs map for calc uniq Refs
         std::string refMapKey = refRes;
         std::map<std::string,int>::iterator itRef;
         itRef = Result::refsMap.find(refMapKey);
@@ -150,9 +150,35 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
             }
             itRef->second++;
         }
-        // Add URL to top URLs
+        // Add Ref to top Refs
         int refCount = (itRef == Result::refsMap.end()) ? 1 : itRef->second;
         Result::topRefsTryToAdd(refMapKey, refCount, config);
+    }
+    
+    // Parse status code
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found status code");
+    }
+    std::string codeRes = matchRegex(&(*logRegExpsCompiled).code, logLineChars, config);
+    if (codeRes.length() < 1) {
+        Result::fails++;
+        return false;
+    } else {
+        // Save to Codes map
+        std::string codeMapKey = codeRes;
+        std::map<std::string,int>::iterator itCode;
+        itCode = Result::codesMap.find(codeMapKey);
+        if (itCode == Result::codesMap.end()) {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + codeMapKey + " is not in our reesult list, added");
+            }
+            Result::codesMap[codeMapKey] = 1;
+        } else {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + codeMapKey + " is already in our reesult list, increment");
+            }
+            itCode->second++;
+        }
     }
     
     // Parse traffic

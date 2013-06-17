@@ -26,6 +26,7 @@ public:
     std::string urlPattern;
     std::string trafficPattern;
     std::string refPattern;
+    std::string codePattern;
     // Limits
     int topUrlsLimit;
     int topRefsLimit;

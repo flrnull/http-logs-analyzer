@@ -16,6 +16,7 @@ Config::Config()
     , urlPattern("")
     , trafficPattern("")
     , refPattern("")
+    , codePattern("")
     , topUrlsLimit(10)
     , topRefsLimit(10)
 {
@@ -64,6 +65,9 @@ void Config::parseArgs(int argc, char **argv) {
             case 'r':
                 this->refPattern = optarg;
                 break;
+            case 'c':
+                this->codePattern = optarg;
+                break;
             case 't':
                 this->trafficPattern = optarg;
                 break;    
@@ -81,6 +85,9 @@ void Config::parseArgs(int argc, char **argv) {
                     exit(1);
                 }
                 if (optopt == 'r') {
+                    exit(1);
+                }
+                if (optopt == 'c') {
                     exit(1);
                 }
                 if (optopt == 't') {
@@ -106,6 +113,7 @@ void Config::debug() {
         Debug::print("----> urlPattern: " + (this->urlPattern.length() ? this->urlPattern : URL_PATTERN));
         Debug::print("----> agentPattern: " + (this->agentPattern.length() ? this->agentPattern : AGENT_PATTERN));
         Debug::print("----> refPattern: " + (this->refPattern.length() ? this->refPattern : REF_PATTERN));
+        Debug::print("----> codePattern: " + (this->codePattern.length() ? this->codePattern : CODE_PATTERN));
         Debug::print("----> topUrlsLimit: ", this->topUrlsLimit);
         Debug::print("----> topRefsLimit: ", this->topRefsLimit);
     }

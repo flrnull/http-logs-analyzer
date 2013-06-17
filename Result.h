@@ -20,6 +20,7 @@ namespace Result
     extern unsigned int yandex;
     extern std::map<std::string,int> topUrlMap;
     extern std::map<std::string,int> topRefsMap;
+    extern std::map<std::string,int> codesMap;
     // Temp values
     extern std::map<std::string,int> ipAgentMap;
     extern std::map<std::string,int> urlMap;

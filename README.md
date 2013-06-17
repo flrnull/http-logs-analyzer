@@ -41,6 +41,10 @@ Output
       'http://lag.ru/index.php' : 12,
       'http://bim-bom.ru/' : 2,
       'http://wiki.org/index.php#lang=en' : 2
+  },
+  statusCodes: {
+      '200' : 14,
+      '301' : 2
   }
 }
 ```

@@ -14,6 +14,7 @@ unsigned int Result::baidu = 0;
 unsigned int Result::yandex = 0;
 std::map<std::string,int> Result::topUrlMap;
 std::map<std::string,int> Result::topRefsMap;
+std::map<std::string,int> Result::codesMap;
 
 
 std::map<std::string,int> Result::ipAgentMap;
@@ -57,6 +58,20 @@ void Result::display() {
         refsIteration++;
         std::cout << "      " << it->first << ": " << it->second;
         if (refsIteration < topRefsMapSize) {
+            std::cout << ",";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "  }," << std::endl;
+    // Status codes
+    std::cout << "  statusCodes: {" << std::endl;
+    typedef std::map<std::string,int>::const_iterator CodesMapIterator;
+    int topCodesMapSize = Result::codesMap.size();
+    int codesIteration = 0;
+    for (CodesMapIterator it = Result::codesMap.begin(); it != Result::codesMap.end(); it++) {
+        codesIteration++;
+        std::cout << "      " << it->first << ": " << it->second;
+        if (codesIteration < topCodesMapSize) {
             std::cout << ",";
         }
         std::cout << std::endl;
