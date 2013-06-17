@@ -18,22 +18,29 @@ Output
 
 ```shell
 {
-  views: 8,
-  visitors: 4,
+  views: 16,
+  visitors: 5,
   urls: 5,
-  traffic: 93995,
-  lines: 12,
-  fails: 4,
+  traffic: 187990,
+  lines: 24,
+  fails: 8,
   crawlers: {
-      Google: 1,
+      Google: 2,
       Bing: 0,
       Baidu: 0,
       Yandex: 0
   },
   topUrls: {
-      '/app/engine/api.php' : 2,
-      '/app/modules/randomgallery.php' : 2,
-      '/mod.php' : 1
+      '/app/engine/api.php' : 4,
+      '/app/modules/randomgallery.php' : 4,
+      '/chat.php?id=a65' : 4,
+      '/chat.php' : 2,
+      '/mod.php' : 2
+  },
+  topRefs: {
+      'http://lag.ru/index.php' : 12,
+      'http://bim-bom.ru/' : 2,
+      'http://wiki.org/index.php#lang=en' : 2
   }
 }
 ```
