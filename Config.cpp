@@ -133,6 +133,7 @@ void Config::help() {
     std::cout << "  -a — UserAgent pattern. Example: ./http-logs-analyzer -f example/access_log -a \"\\\" \\\"([^\\\"]+)\\\"\"" << std::endl;
     std::cout << "  -u — URL pattern. Example: ./http-logs-analyzer -f example/access_log -u \"\\\"[a-zA-Z]+T (/[^\\\"]+) HTTP\"" << std::endl;
     std::cout << "  -r — Referer pattern. Example: ./http-logs-analyzer -f example/access_log -r \"\\\"[^\\\"]+\\\"([^\\\"]+)\\\" \\\"\"" << std::endl;
+    std::cout << "  -c — Status code pattern. Example: ./http-logs-analyzer -f example/access_log -c \"HTTP\\/[0-9]\\.[0-9]\\\" ([0-9]+)\"" << std::endl;
     std::cout << "  -t — Traffic pattern. Example: ./http-logs-analyzer -f example/access_log -t \"HTTP/[0-9]\\\\.[0-9]\\\" [0-9][0-9][0-9]? ([0-9]+)[0-9 ]*\\\"\"" << std::endl;
 }
 
