@@ -5,6 +5,7 @@
 #define AGENT_PATTERN "\" \"([^\"]+)\""
 #define URL_PATTERN "\"[a-zA-Z]+T (/[^\"]+) HTTP"
 #define TRAFFIC_PATTERN "HTTP/[0-9]\\.[0-9]\" [0-9][0-9][0-9]? ([0-9]+)[0-9 ]*\""
+#define REF_PATTERN "\"[^\"]+\"([^\"]+)\" \""
 
 #define GOOGLE_PATTERN "(Googlebot)"
 #define BING_PATTERN "(msnbot)"

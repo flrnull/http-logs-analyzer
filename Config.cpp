@@ -1,5 +1,6 @@
 #include "Config.h"
 #include "Debug.h"
+#include "Patterns.h"
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>
@@ -14,7 +15,9 @@ Config::Config()
     , agentPattern("")
     , urlPattern("")
     , trafficPattern("")
+    , refPattern("")
     , topUrlsLimit(10)
+    , topRefsLimit(10)
 {
     if (this->debugMode == 1) {
         Debug::print("<Config constructor>");
@@ -58,6 +61,9 @@ void Config::parseArgs(int argc, char **argv) {
             case 'u':
                 this->urlPattern = optarg;
                 break;
+            case 'r':
+                this->refPattern = optarg;
+                break;
             case 't':
                 this->trafficPattern = optarg;
                 break;    
@@ -72,6 +78,9 @@ void Config::parseArgs(int argc, char **argv) {
                     exit(1);
                 }
                 if (optopt == 'u') {
+                    exit(1);
+                }
+                if (optopt == 'r') {
                     exit(1);
                 }
                 if (optopt == 't') {
@@ -92,6 +101,13 @@ void Config::debug() {
         Debug::print("Options:");
         Debug::print(debugString);
         Debug::print("----> logName: " + this->logName);
+        Debug::print("----> ipPattern: " + (this->ipPattern.length() ? this->ipPattern : IP_PATTERN));
+        Debug::print("----> trafficPattern: " + (this->trafficPattern.length() ? this->trafficPattern : TRAFFIC_PATTERN));
+        Debug::print("----> urlPattern: " + (this->urlPattern.length() ? this->urlPattern : URL_PATTERN));
+        Debug::print("----> agentPattern: " + (this->agentPattern.length() ? this->agentPattern : AGENT_PATTERN));
+        Debug::print("----> refPattern: " + (this->refPattern.length() ? this->refPattern : REF_PATTERN));
+        Debug::print("----> topUrlsLimit: ", this->topUrlsLimit);
+        Debug::print("----> topRefsLimit: ", this->topRefsLimit);
     }
 }
 
@@ -108,6 +124,7 @@ void Config::help() {
     std::cout << "  -i — IP pattern. Example: ./http-logs-analyzer -f example/access_log -i \"^([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)\"" << std::endl;
     std::cout << "  -a — UserAgent pattern. Example: ./http-logs-analyzer -f example/access_log -a \"\\\" \\\"([^\\\"]+)\\\"\"" << std::endl;
     std::cout << "  -u — URL pattern. Example: ./http-logs-analyzer -f example/access_log -u \"\\\"[a-zA-Z]+T (/[^\\\"]+) HTTP\"" << std::endl;
+    std::cout << "  -r — Referer pattern. Example: ./http-logs-analyzer -f example/access_log -r \"\\\"[^\\\"]+\\\"([^\\\"]+)\\\" \\\"\"" << std::endl;
     std::cout << "  -t — Traffic pattern. Example: ./http-logs-analyzer -f example/access_log -t \"HTTP/[0-9]\\\\.[0-9]\\\" [0-9][0-9][0-9]? ([0-9]+)[0-9 ]*\\\"\"" << std::endl;
 }
 

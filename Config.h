@@ -25,7 +25,10 @@ public:
     std::string agentPattern;
     std::string urlPattern;
     std::string trafficPattern;
+    std::string refPattern;
+    // Limits
     int topUrlsLimit;
+    int topRefsLimit;
 };
 
 #endif	/* CONFIG_H */

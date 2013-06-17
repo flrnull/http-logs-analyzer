@@ -19,13 +19,15 @@ namespace Result
     extern unsigned int baidu;
     extern unsigned int yandex;
     extern std::map<std::string,int> topUrlMap;
+    extern std::map<std::string,int> topRefsMap;
     // Temp values
     extern std::map<std::string,int> ipAgentMap;
     extern std::map<std::string,int> urlMap;
+    extern std::map<std::string,int> refsMap;
     // Actions
     void display();
     void topUrlTryToAdd(std::string urlMapKey, int count, Config * config);
-    void calcTopUrls(Config * config);
+    void topRefsTryToAdd(std::string refsMapKey, int count, Config * config);
 };
   
 

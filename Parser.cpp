@@ -126,6 +126,35 @@ bool Parser::parse(std::string logLine, LogRegexCompiled *logRegExpsCompiled) {
         Result::topUrlTryToAdd(urlMapKey, urlCount, config);
     }
     
+    // Parse referer
+    if (config->debugMode == 1) {
+        Debug::print("Parser::parse: trying to found referer");
+    }
+    std::string refRes = matchRegex(&(*logRegExpsCompiled).referer, logLineChars, config);
+    if (refRes.length() < 1) {
+        Result::fails++;
+        return false;
+    } else {
+        // Save to URLs map for calc uniq URLs
+        std::string refMapKey = refRes;
+        std::map<std::string,int>::iterator itRef;
+        itRef = Result::refsMap.find(refMapKey);
+        if (itRef == Result::refsMap.end()) {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + refMapKey + " is not in our reesult list, added");
+            }
+            Result::refsMap[refMapKey] = 1;
+        } else {
+            if (config->debugMode == 1) {
+                Debug::print("Parser::parse: url " + refMapKey + " is already in our reesult list, increment");
+            }
+            itRef->second++;
+        }
+        // Add URL to top URLs
+        int refCount = (itRef == Result::refsMap.end()) ? 1 : itRef->second;
+        Result::topRefsTryToAdd(refMapKey, refCount, config);
+    }
+    
     // Parse traffic
     if (config->debugMode == 1) {
         Debug::print("Parser::parse: trying to found traffic");
