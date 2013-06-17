@@ -100,7 +100,11 @@ ${OBJECTDEBUGDIR}/main.o: main.cpp
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDEBUGDIR}/main.o main.cpp
 
 
+install:
+	cp dist/Release/http-logs-analyzer /usr/local/bin
+	cp dist/Release/http-logs-analyzer ./
+
 debug: clean ${CND_DISTDIR}/${CND_CONF_DEBUG}/http-logs-analyzer.exe
-	
+
 clean:
 	rm -rf build dist
