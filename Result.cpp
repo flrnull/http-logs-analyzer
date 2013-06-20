@@ -23,26 +23,26 @@ std::map<std::string,int> Result::refsMap;
 
 void Result::display() {
     std::cout << "{" << std::endl;
-    std::cout << "  views: " << Result::views << "," << std::endl;
-    std::cout << "  visitors: " << Result::visitors << "," << std::endl;
-    std::cout << "  urls: " << Result::urls << "," << std::endl;
-    std::cout << "  traffic: " << Result::traffic << "," << std::endl;
-    std::cout << "  lines: " << Result::lines << "," << std::endl;
-    std::cout << "  fails: " << Result::fails << "," << std::endl;
-    std::cout << "  crawlers: {" << std::endl;
-    std::cout << "      Google: " << Result::google << "," << std::endl;
-    std::cout << "      Bing: " << Result::bing << "," << std::endl;
-    std::cout << "      Baidu: " << Result::baidu << "," << std::endl;
-    std::cout << "      Yandex: " << Result::yandex << std::endl;
+    std::cout << "  \"views\": \"" << Result::views << "\"," << std::endl;
+    std::cout << "  \"visitors\": \"" << Result::visitors << "\"," << std::endl;
+    std::cout << "  \"urls\": \"" << Result::urls << "\"," << std::endl;
+    std::cout << "  \"traffic\": \"" << Result::traffic << "\"," << std::endl;
+    std::cout << "  \"lines\": \"" << Result::lines << "\"," << std::endl;
+    std::cout << "  \"fails\": \"" << Result::fails << "\"," << std::endl;
+    std::cout << "  \"crawlers\": {" << std::endl;
+    std::cout << "      \"Google\": \"" << Result::google << "\"," << std::endl;
+    std::cout << "      \"Bing\": \"" << Result::bing << "\"," << std::endl;
+    std::cout << "      \"Baidu\": \"" << Result::baidu << "\"," << std::endl;
+    std::cout << "      \"Yandex\": \"" << Result::yandex << "\"" << std::endl;
     std::cout << "  }," << std::endl;
     // Top URLs
-    std::cout << "  topUrls: {" << std::endl;
+    std::cout << "  \"topUrls\": {" << std::endl;
     typedef std::map<std::string,int>::const_iterator UrlMapIterator;
     int topUrlMapSize = Result::topUrlMap.size();
     int iteration = 0;
     for (UrlMapIterator it = Result::topUrlMap.begin(); it != Result::topUrlMap.end(); it++) {
         iteration++;
-        std::cout << "      " << it->first << ": " << it->second;
+        std::cout << "      \"" << it->first << "\": \"" << it->second << "\"";
         if (iteration < topUrlMapSize) {
             std::cout << ",";
         }
@@ -50,13 +50,13 @@ void Result::display() {
     }
     std::cout << "  }," << std::endl;
     // Top Refs
-    std::cout << "  topRefs: {" << std::endl;
+    std::cout << "  \"topRefs\": {" << std::endl;
     typedef std::map<std::string,int>::const_iterator RefsMapIterator;
     int topRefsMapSize = Result::topRefsMap.size();
     int refsIteration = 0;
     for (RefsMapIterator it = Result::topRefsMap.begin(); it != Result::topRefsMap.end(); it++) {
         refsIteration++;
-        std::cout << "      " << it->first << ": " << it->second;
+        std::cout << "      \"" << it->first << "\": \"" << it->second << "\"";
         if (refsIteration < topRefsMapSize) {
             std::cout << ",";
         }
@@ -64,13 +64,13 @@ void Result::display() {
     }
     std::cout << "  }," << std::endl;
     // Status codes
-    std::cout << "  statusCodes: {" << std::endl;
+    std::cout << "  \"statusCodes\": {" << std::endl;
     typedef std::map<std::string,int>::const_iterator CodesMapIterator;
     int topCodesMapSize = Result::codesMap.size();
     int codesIteration = 0;
     for (CodesMapIterator it = Result::codesMap.begin(); it != Result::codesMap.end(); it++) {
         codesIteration++;
-        std::cout << "      " << it->first << ": " << it->second;
+        std::cout << "      \"" << it->first << "\": \"" << it->second << "\"";
         if (codesIteration < topCodesMapSize) {
             std::cout << ",";
         }

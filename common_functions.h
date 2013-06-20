@@ -1,6 +1,8 @@
 #ifndef COMMON_FUNCTIONS_H
 #define	COMMON_FUNCTIONS_H
 
+
+// Because atoi was buggy this day :<
 template <typename T>
 T StringToNumber ( const std::string &Text, T defValue = T() )
 {
