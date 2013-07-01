@@ -1,7 +1,7 @@
 Http Logs Analyzer
 ==================
 
-Parses ~ 1 000 000 lines per minute. 
+Parses ~ 2 000 000 lines per minute. 
 
 Usage
 -----
