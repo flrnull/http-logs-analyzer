@@ -7,8 +7,13 @@ Usage
 -----
 
 ```shell
-# Default usage with Patterns.h
 ./http-logs-analyzer -f ./example/access_log
+```
+
+Advanced usage
+-----
+
+```shell
 # Specify own IP pattern
 ./http-logs-analyzer -f ./example/access_log -i "^([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)"
 # List of all possible params
