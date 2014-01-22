@@ -7,7 +7,7 @@ Usage
 -----
 
 ```shell
-./http-logs-analyzer -f ./example/access_log
+http-logs-analyzer -f ./example/access_log
 ```
 
 Output
@@ -62,8 +62,8 @@ Install
 ```shell
 git clone git://github.com/flrnull/http-logs-analyzer.git
 cd http-logs-analyzer
-make
-make install
+make && make install
+# Now you can use it
 http-logs-analyzer -h
 ```
 
