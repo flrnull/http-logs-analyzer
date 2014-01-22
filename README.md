@@ -50,7 +50,7 @@ Advanced usage
 -----
 
 ```shell
-# You could specify you own format RegExps, e.g. IP pattern
+# You could specify you own format for RegExps, e.g. IP pattern
 ./http-logs-analyzer -f ./example/access_log -i "^([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)"
 # List of all possible params
 ./http-logs-analyzer -h
